@@ -1,0 +1,18 @@
+homeserver:
+  url: https://matrix.example.com
+  domain: example.com
+
+appservice:
+  port: 9500
+  bindAddress: 0.0.0.0
+
+vikunja:
+  url: https://tasks.example.com
+  apiToken: "your-vikunja-api-token-here"
+
+webhook:
+  port: 9501
+  secret: "your-webhook-secret-here"
+
+logging:
+  level: info
