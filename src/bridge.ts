@@ -12,6 +12,9 @@ import { handleCommand } from "./matrix/commands.js";
 import { getProjectForRoom } from "./matrix/room-store.js";
 import { matrixMessage } from "./matrix/formatter.js";
 
+// Disable crypto — appservice bridges don't need E2EE
+process.env.MATRIX_BOT_SDK_CRYPTO_ENABLED = "false";
+
 const LOG_PREFIX = "[Bridge]";
 
 export class VikunjaBridge {
@@ -36,6 +39,9 @@ export class VikunjaBridge {
       bindAddress: this.config.appservice.bindAddress,
       registration: this.registration,
       joinStrategy: new SimpleRetryJoinStrategy(),
+      intentOptions: {
+        encryption: false,
+      },
     });
 
     AutojoinRoomsMixin.setupOnAppservice(this.appservice);
